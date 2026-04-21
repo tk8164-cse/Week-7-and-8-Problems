@@ -1,0 +1,41 @@
+import java.util.Scanner;
+public class NaturalSumComparison {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a positive integer (n): ");
+        if (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a whole number.");
+            return;
+        }
+        int n = scanner.nextInt();
+        if (n <= 0) {
+            System.out.println("Error: " + n + " is not a natural number. Please enter n > 0.");
+        } 
+else {
+            long recursiveResult = sumRecursion(n);
+            long formulaResult = sumFormula(n);
+            displayComparison(n, recursiveResult, formulaResult);
+        }
+        scanner.close();
+    }
+    public static long sumRecursion(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return n + sumRecursion(n - 1);
+    }
+    public static long sumFormula(int n) {
+        return (long) n * (n + 1) / 2;
+    }
+    public static void displayComparison(int n, long res1, long res2) {
+        System.out.println("\n--- Results for n = " + n + " ---");
+        System.out.println("Recursive Sum: " + res1);
+        System.out.println("Formulaic Sum: " + res2);
+        if (res1 == res2) {
+            System.out.println("Verification: Success! Both methods yield the same result.");
+        } 
+else {
+            System.out.println("Verification: Failed! Something went wrong.");
+        }
+    }
+}
